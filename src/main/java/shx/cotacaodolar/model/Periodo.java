@@ -9,7 +9,10 @@ public class Periodo {
     private Date dataInicial;
     private Date dataFinal;
     private Long diasEntreAsDatas;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy"); 
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+
+    public Periodo() {
+    }
 
     public Periodo(String dataInicial, String dataFinal) throws ParseException{
         this.dataInicial = new SimpleDateFormat("MM-dd-yyyy").parse(dataInicial);
@@ -29,6 +32,13 @@ public class Periodo {
 
     public String getDataFinal(){
         return this.dateFormat.format(this.dataFinal);
+    }
+
+    // Função para obter a data atual formatada como MM-dd-yyyy
+    public String obterDataAtualFormatada() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+        Date dataAtual = new Date();
+        return dateFormat.format(dataAtual);
     }
 
 }
