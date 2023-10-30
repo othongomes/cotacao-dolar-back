@@ -2,6 +2,7 @@ package shx.cotacaodolar.model;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -34,11 +35,15 @@ public class Periodo {
         return this.dateFormat.format(this.dataFinal);
     }
 
-    // Função para obter a data atual formatada como MM-dd-yyyy
-    public String obterDataAtualFormatada() {
+
+    // Função para obter a data atual formatada como MM-dd-yyyy com uma subtração de dias
+    public String obterDataFormatadaComSubtracao(int diasParaSubtrair) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
-        Date dataAtual = new Date();
-        return dateFormat.format(dataAtual);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.add(Calendar.DAY_OF_MONTH, -diasParaSubtrair);
+        Date dataComSubtracao = calendar.getTime();
+        return dateFormat.format(dataComSubtracao);
     }
 
 }

@@ -30,17 +30,19 @@ public class MoedaController {
         return moedaService.getCotacoesPeriodo(startDate, endDate);
     }
     
-    //Rotina que retorna a cotação atual
+    //Rotina que retorna a ultima cotação disponível
     @GetMapping("/moeda/atual")
     public ResponseEntity<Moeda> getCotacaoAtual() throws IOException, MalformedURLException, ParseException {
         Moeda moedaAtual = moedaService.getCotacaoAtual();
         return new ResponseEntity<>(moedaAtual, HttpStatus.OK);
     }
     
-    //Rotina que recebe um período e retorna uma lista de cotações, somente com as cotações menores que a cotação atual.
+    //Rotina que recebe um período e retorna uma lista de cotações, somente com as cotações menores que a ultima
+    // cotação disponível.
     @GetMapping("/moeda/menores/{data1}&{data2}")
     public List<Moeda> getCotacoesMenoresAtual(@PathVariable("data1") String startDate, @PathVariable("data2") String endDate) throws IOException, MalformedURLException, ParseException{
         return moedaService.getCotacoesMenoresAtual(startDate, endDate);
     }
+
 
 }
